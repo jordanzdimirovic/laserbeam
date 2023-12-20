@@ -1,14 +1,18 @@
-
-
-mod models {
+pub mod cli {
     pub mod cli_parse;
+    pub mod cli_args;
 }
 
-mod communication {
-    pub mod connect;
+pub mod communication {
+    pub mod communication;
 }
 
-use crate::models::cli_parse::{ BeamCli, LaserbeamCommands };
+pub mod misc;
+pub mod types;
+
+use communication::communication::establish_beam;
+
+use cli::cli_parse::{ BeamCli, LaserbeamCommands };
 
 use clap::Parser;
 
@@ -18,6 +22,11 @@ fn main() {
     match &value.cmd {
         LaserbeamCommands::Up(values) => {
             // Initiate up
+            let session = establish_beam("http://localhost:8080", Box::new(values.path.to_owned()))
+            .expect("Beam establishment failed");
+
+            println!("{:?}", session);
+
         },
         LaserbeamCommands::Down(values) => {
             // Initiate down

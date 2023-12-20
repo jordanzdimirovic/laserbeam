@@ -1,6 +1,7 @@
-use std::path::PathBuf;
+
 
 use clap::Args;
+use std::path::PathBuf;
 
 #[derive(Args)]
 pub struct UpArgs {
@@ -11,3 +12,4 @@ pub struct UpArgs {
 pub struct DownArgs {
     code: String
 }
+

@@ -1,9 +1,6 @@
 use clap::{Parser, Subcommand, command} ;
 
-use self::cli_args::{UpArgs, DownArgs};
-
-#[path ="cli_args.rs"]
-mod cli_args;
+use crate::cli::cli_args::{UpArgs, DownArgs};
 
 // Defines the command args for each valid laser beam top-level command
 #[derive(Subcommand)]
